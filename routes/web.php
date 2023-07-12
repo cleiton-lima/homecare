@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\PlantaoController;
+use App\Http\Controllers\CuidadorController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('consulta/{id}', [ConsultaController::class, 'getById']);
+Route::get('plantao/{id}', [PlantaoController::class, 'getById']);
+Route::get('cuidador/{cpf}/plantao', [CuidadorController::class, 'getPlantaoByCpf']);
+Route::get('cuidador', [CuidadorController::class, 'getAll']);
+Route::get('cuidador/{cpf}', [CuidadorController::class, 'getByCpf']);
+Route::post('cuidador', [CuidadorController::class, 'insert']);
